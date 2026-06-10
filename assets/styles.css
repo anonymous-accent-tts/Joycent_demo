@@ -218,14 +218,19 @@ h4 {
   background: var(--white);
   box-shadow: var(--shadow);
   overflow: hidden;
+  height: 260px;
 }
 
 .model-figure-content,
 .model-figure img {
   display: block;
   width: 100%;
-  height: 320px;
+  min-height: 520px;
   border: none;
+}
+
+.model-figure-content {
+  height: 520px;
 }
 
 figcaption {
