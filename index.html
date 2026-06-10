@@ -223,7 +223,13 @@
 
       function speakerFromFile(file) {
         const match = file.match(/_((?:SSB|G)\d+)_sg_gen\.wav$/);
-        return match ? match[1] : "Unknown";
+        const speaker = match ? match[1] : "Unknown";
+        // Map speaker IDs to display names
+        const speakerMap = {
+          "G0001": "Seen",
+          "SSB0693": "Unseen"
+        };
+        return speakerMap[speaker] || speaker;
       }
 
       function renderModelCell(model, files) {
