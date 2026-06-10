@@ -9,27 +9,16 @@
   </head>
   <body>
     <header class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Accent-aware Mandarin Text-to-Speech</p>
-          <h1>Joycent: Title Placeholder</h1>
-          <p class="subtitle">
-            Demo samples for comparing accent-conditioned Mandarin TTS outputs across model variants.
-          </p>
-          <div class="links" aria-label="Project links">
-            <a href="#abstract">Abstract</a>
-            <a href="#model">Model</a>
-            <a href="#samples">Samples</a>
-          </div>
+      <div class="wrap hero-copy centered">
+        <h1>Joycent: Accent-aware Mandarin TTS Comparison</h1>
+        <div class="hero-links">
+          <a href="#abstract">[Paper]</a>
         </div>
-        <div class="hero-panel" aria-label="Demo summary">
-          <span class="stat">12</span>
-          <span>demo utterances</span>
-          <span class="stat">6</span>
-          <span>model columns</span>
-          <span class="stat">SG</span>
-          <span>accent reference</span>
-        </div>
+        <p class="subtitle">
+          A lightweight demo page for listening to accent and speaker-conditioned Mandarin speech outputs.
+        </p>
+        <p class="hero-author">FunAudioLLM Team</p>
+        <p class="hero-author strong">SpeechLab@Tongyi, Alibaba Group</p>
       </div>
     </header>
 
@@ -38,9 +27,9 @@
         <div class="wrap prose">
           <h2>Abstract</h2>
           <p>
-            Abstract placeholder. Replace this paragraph with the final paper abstract. This area is reserved for
-            a short overview of Joycent, the accent reference conditioning setup, speaker reference conditioning,
-            and the comparison protocol used for the demo samples below.
+            Joycent demonstrates accent-conditioned Mandarin TTS with speaker reference inputs. This page compares
+            six text cases across each model variant, using shared accent and speaker audio references for clear
+            listening comparisons.
           </p>
         </div>
       </section>
@@ -66,7 +55,7 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Audio Demo</p>
-              <h2>Demo Samples from <code>demo.txt</code></h2>
+              <h2>Demo Samples</h2>
             </div>
             <p>
               Each row shows the input accent reference, speaker reference, Chinese phone/text sequence,
@@ -158,7 +147,15 @@
             "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav"
           ]
         },
-        { label: "CosyVoice", path: null },
+        { label: "CosyVoice", 
+        path: "assets/audio/cosyvoice/",
+          files: [
+            "SSB19020103_SSB0693.wav",
+            "SSB18720267_SSB0693.wav",
+            "SSB08510183_SSB0693.wav",
+            "SSB08170368_SSB0693.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB0693.wav"
+          ]},
         {
           label: "Joycent",
           path: "assets/audio/joycent/",
