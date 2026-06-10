@@ -88,19 +88,63 @@
 
     <script>
       const demos = [
-        ["SSB19020103_SSB0693_sg_gen.wav", "这主要是因为对于很多车主来说"],
-        ["SSB19020103_SSB1340_sg_gen.wav", "这主要是因为对于很多车主来说"],
-        ["SSB18720267_SSB0693_sg_gen.wav", "他带领中国女排闯进决赛"],
-        ["SSB18720267_SSB1340_sg_gen.wav", "他带领中国女排闯进决赛"],
-        ["SSB08510183_SSB0693_sg_gen.wav", "我想只有这样才能平息这个风波"],
-        ["SSB08510183_SSB1340_sg_gen.wav", "我想只有这样才能平息这个风波"],
-        ["SSB08170368_SSB0693_sg_gen.wav", "但是争取好成绩的前提是身体好"],
-        ["SSB08170368_SSB1340_sg_gen.wav", "但是争取好成绩的前提是身体好"],
-        ["A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav", "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看"],
-        ["A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav", "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看"],
-        ["A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav", "呃那不错诶你的中文还可以读那些书"],
-        ["A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav", "呃那不错诶你的中文还可以读那些书"]
+        {
+          id: "01",
+          text: "这主要是因为对于很多车主来说",
+          files: [
+            "SSB19020103_SSB0693_sg_gen.wav",
+            "SSB19020103_SSB1340_sg_gen.wav"
+          ]
+        },
+        {
+          id: "02",
+          text: "他带领中国女排闯进决赛",
+          files: [
+            "SSB18720267_SSB0693_sg_gen.wav",
+            "SSB18720267_SSB1340_sg_gen.wav"
+          ]
+        },
+        {
+          id: "03",
+          text: "我想只有这样才能平息这个风波",
+          files: [
+            "SSB08510183_SSB0693_sg_gen.wav",
+            "SSB08510183_SSB1340_sg_gen.wav"
+          ]
+        },
+        {
+          id: "04",
+          text: "但是争取好成绩的前提是身体好",
+          files: [
+            "SSB08170368_SSB0693_sg_gen.wav",
+            "SSB08170368_SSB1340_sg_gen.wav"
+          ]
+        },
+        {
+          id: "05",
+          text: "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看",
+          files: [
+            "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav"
+          ]
+        },
+        {
+          id: "06",
+          text: "呃那不错诶你的中文还可以读那些书",
+          files: [
+            "A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav"
+          ]
+        }
       ];
+
+      const referenceAudio = {
+        accent: "assets/audio/reference_acc/A0001_S001_0_G0002_segment_0134.wav",
+        speakers: [
+          { label: "0693", src: "assets/audio/reference_spk/SSB06930020.wav" },
+          { label: "1340", src: "assets/audio/reference_spk/SSB13400002.wav" }
+        ]
+      };
 
       const models = [
         {
@@ -129,11 +173,12 @@
             "SSB08170368_SSB0693_sg_gen.wav",
             "SSB08170368_SSB1340_sg_gen.wav",
             "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav",
-            "A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav"
+            "A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav"
           ]
         },
         { label: "Encoder", path: "assets/audio/encoder/" },
-        { label: "Decoder", path: "assets/audio/decoder/" },
         { label: "Decoder Only", path: "assets/audio/decoder_only/" }
       ];
 
@@ -142,51 +187,65 @@
         return match ? match[1] : "Unknown";
       }
 
-      function sourceFromFile(file) {
-        return file.replace(/_(SSB\d+)_sg_gen\.wav$/, "");
-      }
+      function renderModelCell(model, files) {
+        const players = files.map((file) => {
+          const speaker = speakerFromFile(file);
+          const available = model.path && (!model.files || model.files.includes(file));
+          if (!available) {
+            return `
+              <div class="model-audio">
+                <span>${speaker}</span>
+                <span class="missing">Not available</span>
+              </div>
+            `;
+          }
+          return `
+            <div class="model-audio">
+              <span>${speaker}</span>
+              <audio controls preload="none" src="${model.path}${file}"></audio>
+            </div>
+          `;
+        }).join("");
 
-      function renderModelCell(model, file) {
-        const available = model.path && (!model.files || model.files.includes(file));
-        const audio = available
-          ? `<audio controls preload="none" src="${model.path}${file}"></audio>`
-          : `<span class="missing">Not available</span>`;
         return `
           <div class="result-card${model.highlight ? " highlight" : ""}">
             <span>${model.label}</span>
-            ${audio}
+            ${players}
           </div>
         `;
       }
 
-      document.getElementById("demo-list").innerHTML = demos.map(([file, text], index) => {
-        const speaker = speakerFromFile(file);
-        const source = sourceFromFile(file);
+      document.getElementById("demo-list").innerHTML = demos.map(({ id, text, files }) => {
         return `
           <article class="case">
             <div class="case-title">
               <div>
-                <span class="tag">Demo ${String(index + 1).padStart(2, "0")}</span>
-                <h3>${source}</h3>
+                <span class="tag">Demo ${id}</span>
+                <h3>${text}</h3>
               </div>
-              <span class="case-id">${speaker}</span>
+              <span class="case-id">0693 + 1340</span>
             </div>
             <div class="meta-strip">
               <div>
-                <strong>Accent Reference</strong>
-                <span>Singapore Mandarin (sg)</span>
+                <strong>Accent Audio</strong>
+                <audio controls preload="none" src="${referenceAudio.accent}"></audio>
               </div>
               <div>
-                <strong>Speaker Reference</strong>
-                <span>${speaker}</span>
+                <strong>Speaker Audio</strong>
+                ${referenceAudio.speakers.map((speaker) => `
+                  <div class="speaker-ref">
+                    <span>${speaker.label}</span>
+                    <audio controls preload="none" src="${speaker.src}"></audio>
+                  </div>
+                `).join("")}
               </div>
               <div>
                 <strong>Phone / Text Sequence</strong>
                 <span class="zh">${text}</span>
               </div>
             </div>
-            <div class="results" aria-label="${file} model results">
-              ${models.map((model) => renderModelCell(model, file)).join("")}
+            <div class="results" aria-label="Demo ${id} model results">
+              ${models.map((model) => renderModelCell(model, files)).join("")}
             </div>
           </article>
         `;
