@@ -212,18 +212,20 @@ h4 {
 
 .model-figure {
   margin: 0;
-  padding: 20px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
+.model-figure-content,
 .model-figure img {
   display: block;
   width: 100%;
-  height: auto;
-  min-height: 160px;
+  height: 320px;
+  border: none;
 }
 
 figcaption {
