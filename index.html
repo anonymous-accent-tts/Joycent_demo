@@ -79,8 +79,8 @@
           source: "这主要是因为对于很多车主来说",
           phone: "sil zh e4 zh u3 ii iao4 sh ix4 ii in1 uu ui4 d ui4 vv v2 h en3 d uo1 ch e1 zh u3 l ai2 sh uo1 sil",
           files: [
-            "SSB19020103_SSB0693_sg_gen.wav",
-            "SSB19020103_G0001_sg_gen.wav"
+            "SSB19020103_G0001_sg_gen.wav",
+            "SSB19020103_SSB0693_sg_gen.wav"
           ]
         },
         {
@@ -88,8 +88,8 @@
           source: "他带领中国女排闯进决赛",
           phone: "sil t a1 d ai4 l ing3 zh ong1 g uo2 n v3 p ai2 ch uang3 j in4 j ve2 s ai4 sil",
           files: [
-            "SSB18720267_SSB0693_sg_gen.wav",
-            "SSB18720267_G0001_sg_gen.wav"
+            "SSB18720267_G0001_sg_gen.wav",
+            "SSB18720267_SSB0693_sg_gen.wav"
           ]
         },
         {
@@ -97,8 +97,8 @@
           source: "我想只有这样才能平息这个风波",
           phone: "sil uu uo3 x iang3 zh ix1 ii iu3 zh e4 ii iang4 c ai2 n eng2 p ing2 x i1 zh e4 g e4 f eng1 b o1 sil",
           files: [
-            "SSB08510183_SSB0693_sg_gen.wav",
-            "SSB08510183_G0001_sg_gen.wav"
+            "SSB08510183_G0001_sg_gen.wav",
+            "SSB08510183_SSB0693_sg_gen.wav"
           ]
         },
         {
@@ -106,8 +106,8 @@
           source: "但是争取好成绩的前提是身体好",
           phone: "sil d an4 sh ix4 zh eng1 q v3 h ao3 ch eng2 j i4 d e5 sil q ian2 t i2 sh ix4 sh en1 t i3 h ao3 sil",
           files: [
-            "SSB08170368_SSB0693_sg_gen.wav",
-            "SSB08170368_G0001_sg_gen.wav"
+            "SSB08170368_G0001_sg_gen.wav",
+            "SSB08170368_SSB0693_sg_gen.wav"
           ]
         },
         {
@@ -115,8 +115,8 @@
           source: "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看",
           phone: "sil m ei2 ii iu3 uu uo3 z ui4 j in4 ee e4 z ui4 j in4 sh ix4 z ai4 k an4 n a3 g e4 m i4 sh ix4 d a4 t ao2 t uo1 d an4 sh ix4 ii i3 j ing1 uu uan2 l e5 d ao4 z ui4 h ou4 ii i1 sil j i2 uu uo3 h ai2 m ei2 sil k an4 sil",
           files: [
-            "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav",
-            "A0002_S001_0_G0004_segment_0080_G0001_sg_gen.wav"
+            "A0002_S001_0_G0004_segment_0080_G0001_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav"
           ]
         },
         {
@@ -124,8 +124,8 @@
           source: "哦那不错诶你的中文还可以读那些书",
           phone: "ee e2 n a1 b u2 c uo4 ee ei2 n i3 d e5 zh ong1 uu un2 h ai2 sil k e3 ii i3 sil d u2 n ei4 sil x ie1 sil sh u1 sil",
           files: [
-            "A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav",
-            "A0002_S001_0_G0004_segment_0023_G0001_sg_gen.wav"
+            "A0002_S001_0_G0004_segment_0023_G0001_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav"
           ]
         }
       ];
@@ -222,7 +222,7 @@
       ];
 
       function speakerFromFile(file) {
-        const match = file.match(/_(SSB\d+)_sg_gen\.wav$/);
+        const match = file.match(/_((?:SSB|G)\d+)_sg_gen\.wav$/);
         return match ? match[1] : "Unknown";
       }
 
