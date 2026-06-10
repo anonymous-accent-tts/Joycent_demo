@@ -14,9 +14,9 @@
         <div class="hero-links">
           <a href="#abstract">[Abstract]</a>
         </div>
-        <p class="subtitle">
+        <!-- <p class="subtitle">
           Accent text-to-speech (TTS) aims to synthesize speech with target accents and is widely used as a form of data augmentation for speech assessment tasks. Existing accent TTS systems typically adopt a two-stage pipeline that first converts standard phone sequences into accented phone sequences, followed by accented speech synthesis. However, such approaches suffer from error accumulation during phone conversion and require paired standard-accented phone sequence data, which is often limited in practice. In addition, text-based accented phone representations are insufficient to model acoustic accent characteristics such as prosody and rhythm. In this work, we propose Joycent, a diffusion-based accent TTS model that synthesizes accented speech directly from standard phone sequences and speech references without requiring accented phone prediction. To address the entanglement between speaker identity and accent information, we introduce WhisAID, a Mandarin accent identification model based on a pre-trained Whisper encoder trained on native accented Mandarin speech across nine accents. Joycent integrates accent and speaker representations through conditional layer normalization (CLN) in the text encoder, while speaker representations extracted from a pre-trained FACodec for zero-shot speaker adaptation. Experimental results show that Joycent improves accentedness while preserving speaker identity compared with baseline systems involving accented phone prediction. 
-        </p>
+        </p> -->
         </div>
     </header>
 
@@ -25,9 +25,8 @@
         <div class="wrap prose">
           <h2>Abstract</h2>
           <p>
-            Joycent demonstrates accent-conditioned Mandarin TTS with speaker reference inputs. This page compares
-            six text cases across each model variant, using shared accent and speaker audio references for clear
-            listening comparisons.
+            Accent text-to-speech (TTS) aims to synthesize speech with target accents and is widely used as a form of data augmentation for speech assessment tasks. Existing accent TTS systems typically adopt a two-stage pipeline that first converts standard phone sequences into accented phone sequences, followed by accented speech synthesis. However, such approaches suffer from error accumulation during phone conversion and require paired standard-accented phone sequence data, which is often limited in practice. In addition, text-based accented phone representations are insufficient to model acoustic accent characteristics such as prosody and rhythm. In this work, we propose Joycent, a diffusion-based accent TTS model that synthesizes accented speech directly from standard phone sequences and speech references without requiring accented phone prediction. To address the entanglement between speaker identity and accent information, we introduce WhisAID, a Mandarin accent identification model based on a pre-trained Whisper encoder trained on native accented Mandarin speech across nine accents. Joycent integrates accent and speaker representations through conditional layer normalization (CLN) in the text encoder, while speaker representations extracted from a pre-trained FACodec for zero-shot speaker adaptation. Experimental results show that Joycent improves accentedness while preserving speaker identity compared with baseline systems involving accented phone prediction. 
+        
           </p>
         </div>
       </section>
@@ -42,9 +41,7 @@
             <p>Replace the placeholder below with the final Joycent model diagram.</p>
           </div>
           <figure class="model-figure">
-            <object data="assets/img/joycent5.pdf" type="application/pdf" class="model-figure-content">
-              <img src="assets/img/model-placeholder.svg" alt="Joycent model architecture placeholder">
-            </object>
+            <img src="assets/img/joycent5.pdf" alt="Joycent model architecture" class="model-figure-content">
             <figcaption>Joycent model architecture.</figcaption>
           </figure>
         </div>
@@ -57,10 +54,10 @@
               <p class="eyebrow">Audio Demo</p>
               <h2>Demo Samples</h2>
             </div>
-            <p>
+            <!-- <p>
               Each row shows the accent reference, speaker reference, phone sequence,
               and available model outputs. MACST and CosyVoice audio slots are kept for comparison.
-            </p>
+            </p> -->
           </div>
 
           <div id="demo-list" class="demo-list"></div>
@@ -143,7 +140,7 @@
 
       const models = [
         {
-          label: "MACST",
+          label: "MacST",
           path: "assets/audio/macst/",
           files: [
             "SSB19020103_SSB0693_sg_gen.wav",
@@ -190,7 +187,7 @@
             "A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav"
           ]
         },
-        { label: "Encoder Mid-block CLN", path: "assets/audio/encoder/",
+        { label: "Mid-block CLN", path: "assets/audio/encoder/",
           files: [
             "SSB19020103_SSB0693_sg_gen.wav",
             "SSB19020103_SSB1340_sg_gen.wav",
@@ -206,7 +203,7 @@
             "A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav"
           ]
          },
-        { label: "Decoder Emb.", path: "assets/audio/decoder_only/",
+        { label: "Decoder Only", path: "assets/audio/decoder_only/",
           files: [
             "SSB19020103_SSB0693_sg_gen.wav",
             "SSB19020103_SSB1340_sg_gen.wav",
