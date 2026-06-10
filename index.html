@@ -175,8 +175,8 @@
             "A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav"
           ]
         },
-        { label: "Encoder", path: "assets/audio/encoder/" },
-        { label: "Decoder Only", path: "assets/audio/decoder_only/" }
+        { label: "Encoder-side (Acc. Mid-block CLN)", path: "assets/audio/encoder/" },
+        { label: "Decoder-side (Acc. & Spk. Emb)", path: "assets/audio/decoder_only/" }
       ];
 
       function speakerFromFile(file) {
@@ -220,15 +220,15 @@
                 <span class="tag">Demo ${id}</span>
                 <h3>${text}</h3>
               </div>
-              <span class="case-id">0693 + 1340</span>
+        
             </div>
             <div class="meta-strip">
               <div>
-                <strong>Accent Audio</strong>
+                <strong>Accent Reference</strong>
                 <audio controls preload="none" src="${referenceAudio.accent}"></audio>
               </div>
               <div>
-                <strong>Speaker Audio</strong>
+                <strong>Speaker Reference</strong>
                 ${referenceAudio.speakers.map((speaker) => `
                   <div class="speaker-ref">
                     <span>${speaker.label}</span>
@@ -237,7 +237,7 @@
                 `).join("")}
               </div>
               <div>
-                <strong>Phone / Text Sequence</strong>
+                <strong>Text Sequence</strong>
                 <span class="zh">${text}</span>
               </div>
             </div>
