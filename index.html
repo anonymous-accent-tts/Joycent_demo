@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Joycent Demo</title>
+    <meta name="description" content="Audio samples for Joycent accent-aware Mandarin text-to-speech.">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Accent-aware Mandarin Text-to-Speech</p>
+          <h1>Joycent: Title Placeholder</h1>
+          <p class="subtitle">
+            Demo samples for comparing accent-conditioned Mandarin TTS outputs across model variants.
+          </p>
+          <div class="links" aria-label="Project links">
+            <a href="#abstract">Abstract</a>
+            <a href="#model">Model</a>
+            <a href="#samples">Samples</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Demo summary">
+          <span class="stat">12</span>
+          <span>demo utterances</span>
+          <span class="stat">6</span>
+          <span>model columns</span>
+          <span class="stat">SG</span>
+          <span>accent reference</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="abstract" class="band">
+        <div class="wrap prose">
+          <h2>Abstract</h2>
+          <p>
+            Abstract placeholder. Replace this paragraph with the final paper abstract. This area is reserved for
+            a short overview of Joycent, the accent reference conditioning setup, speaker reference conditioning,
+            and the comparison protocol used for the demo samples below.
+          </p>
+        </div>
+      </section>
+
+      <section id="model" class="band soft">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Model Overview</p>
+              <h2>Architecture Figure Placeholder</h2>
+            </div>
+            <p>Replace the placeholder below with the final Joycent model diagram.</p>
+          </div>
+          <figure class="model-figure">
+            <img src="assets/img/model-placeholder.svg" alt="Joycent model architecture placeholder">
+            <figcaption>Reserved space for the Joycent model figure.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="samples" class="band samples">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Audio Demo</p>
+              <h2>Demo Samples from <code>demo.txt</code></h2>
+            </div>
+            <p>
+              Each row shows the input accent reference, speaker reference, Chinese phone/text sequence,
+              and available model outputs. MACST and CosyVoice audio slots are kept for comparison.
+            </p>
+          </div>
+
+          <div id="demo-list" class="demo-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <strong>Joycent Demo</strong>
+        <span>Audio samples are loaded from <code>assets/audio</code>.</span>
+      </div>
+    </footer>
+
+    <script>
+      const demos = [
+        ["SSB19020103_SSB0693_sg_gen.wav", "这主要是因为对于很多车主来说"],
+        ["SSB19020103_SSB1340_sg_gen.wav", "这主要是因为对于很多车主来说"],
+        ["SSB18720267_SSB0693_sg_gen.wav", "他带领中国女排闯进决赛"],
+        ["SSB18720267_SSB1340_sg_gen.wav", "他带领中国女排闯进决赛"],
+        ["SSB08510183_SSB0693_sg_gen.wav", "我想只有这样才能平息这个风波"],
+        ["SSB08510183_SSB1340_sg_gen.wav", "我想只有这样才能平息这个风波"],
+        ["SSB08170368_SSB0693_sg_gen.wav", "但是争取好成绩的前提是身体好"],
+        ["SSB08170368_SSB1340_sg_gen.wav", "但是争取好成绩的前提是身体好"],
+        ["A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav", "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看"],
+        ["A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav", "没有我最近呃最近是在看那个密室大逃脱但是已经完了到最后一集我还没看"],
+        ["A0002_S001_0_G0004_segment_0023_SSB0693_sg_gen.wav", "呃那不错诶你的中文还可以读那些书"],
+        ["A0002_S001_0_G0004_segment_0023_SSB1340_sg_gen.wav", "呃那不错诶你的中文还可以读那些书"]
+      ];
+
+      const models = [
+        {
+          label: "MACST",
+          path: "assets/audio/macst/",
+          files: [
+            "SSB19020103_SSB0693_sg_gen.wav",
+            "SSB18720267_SSB0693_sg_gen.wav",
+            "SSB08510183_SSB0693_sg_gen.wav",
+            "SSB08170368_SSB0693_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav"
+          ]
+        },
+        { label: "CosyVoice", path: null },
+        {
+          label: "Joycent",
+          path: "assets/audio/joycent/",
+          highlight: true,
+          files: [
+            "SSB19020103_SSB0693_sg_gen.wav",
+            "SSB19020103_SSB1340_sg_gen.wav",
+            "SSB18720267_SSB0693_sg_gen.wav",
+            "SSB18720267_SSB1340_sg_gen.wav",
+            "SSB08510183_SSB0693_sg_gen.wav",
+            "SSB08510183_SSB1340_sg_gen.wav",
+            "SSB08170368_SSB0693_sg_gen.wav",
+            "SSB08170368_SSB1340_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB0693_sg_gen.wav",
+            "A0002_S001_0_G0004_segment_0080_SSB1340_sg_gen.wav"
+          ]
+        },
+        { label: "Encoder", path: "assets/audio/encoder/" },
+        { label: "Decoder", path: "assets/audio/decoder/" },
+        { label: "Decoder Only", path: "assets/audio/decoder_only/" }
+      ];
+
+      function speakerFromFile(file) {
+        const match = file.match(/_(SSB\d+)_sg_gen\.wav$/);
+        return match ? match[1] : "Unknown";
+      }
+
+      function sourceFromFile(file) {
+        return file.replace(/_(SSB\d+)_sg_gen\.wav$/, "");
+      }
+
+      function renderModelCell(model, file) {
+        const available = model.path && (!model.files || model.files.includes(file));
+        const audio = available
+          ? `<audio controls preload="none" src="${model.path}${file}"></audio>`
+          : `<span class="missing">Not available</span>`;
+        return `
+          <div class="result-card${model.highlight ? " highlight" : ""}">
+            <span>${model.label}</span>
+            ${audio}
+          </div>
+        `;
+      }
+
+      document.getElementById("demo-list").innerHTML = demos.map(([file, text], index) => {
+        const speaker = speakerFromFile(file);
+        const source = sourceFromFile(file);
+        return `
+          <article class="case">
+            <div class="case-title">
+              <div>
+                <span class="tag">Demo ${String(index + 1).padStart(2, "0")}</span>
+                <h3>${source}</h3>
+              </div>
+              <span class="case-id">${speaker}</span>
+            </div>
+            <div class="meta-strip">
+              <div>
+                <strong>Accent Reference</strong>
+                <span>Singapore Mandarin (sg)</span>
+              </div>
+              <div>
+                <strong>Speaker Reference</strong>
+                <span>${speaker}</span>
+              </div>
+              <div>
+                <strong>Phone / Text Sequence</strong>
+                <span class="zh">${text}</span>
+              </div>
+            </div>
+            <div class="results" aria-label="${file} model results">
+              ${models.map((model) => renderModelCell(model, file)).join("")}
+            </div>
+          </article>
+        `;
+      }).join("");
+    </script>
+  </body>
+</html>
